@@ -362,8 +362,7 @@ print("\n--- 模型3：梯度提升回归 ---")
 t0 = time.time()
 gb_model = GradientBoostingRegressor(
     n_estimators=200, max_depth=5, learning_rate=0.1,
-    subsample=0.8, colsample_bytree=0.8,
-    random_state=42
+    subsample=0.8, random_state=42
 )
 gb_model.fit(X_train_scaled, y_train)
 y_pred_gb = gb_model.predict(X_test_scaled)

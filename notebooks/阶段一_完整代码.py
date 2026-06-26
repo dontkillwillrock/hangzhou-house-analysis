@@ -132,14 +132,13 @@ key_numeric = [col for col in numeric_cols if col not in ['序号']]
 n_cols = min(len(key_numeric), 8)
 n_rows = (len(key_numeric) + n_cols - 1) // n_cols
 fig, axes = plt.subplots(n_rows, n_cols, figsize=(4 * n_cols, 3 * n_rows))
-if n_rows == 1:
-    axes = [axes]
+# 统一展平 axes，兼容 1x1 / 1xN / NxM 三种情况
+if n_rows == 1 and n_cols == 1:
+    axes = np.array([axes])
+axes_flat = axes.flatten()
 for i, col in enumerate(key_numeric[:n_rows * n_cols]):
-    row_idx = i // n_cols
-    col_idx = i % n_cols
-    ax = axes[row_idx][col_idx] if n_rows > 1 else axes[col_idx]
-    sns.boxplot(y=house[col], ax=ax, color='lightblue')
-    ax.set_title(f'{col}')
+    sns.boxplot(y=house[col], ax=axes_flat[i], color='lightblue')
+    axes_flat[i].set_title(f'{col}')
 plt.suptitle('关键数值特征箱线图（异常值检测）', fontsize=14, y=1.02)
 plt.tight_layout()
 plt.savefig('figures/eda/异常值检测箱线图.png', dpi=300)
