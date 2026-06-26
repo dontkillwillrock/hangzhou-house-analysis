@@ -268,6 +268,31 @@ python notebooks/阶段三_完整代码.py
 python convert_to_docx.py
 ```
 
+## 提交清单
+
+提交时需包含以下核心文件：
+
+### 模型文件（`models/`）
+
+| 文件 | 大小 | 说明 |
+|------|------|------|
+| `best_gradient_boosting.pkl` | 3.4 MB | ✅ **必交** — 调优后的梯度提升，精度高、体积小 |
+| `best_random_forest.pkl` | 27 MB | ◻ 可选 — 精度最高的单一模型（文件较大） |
+| `stacking_meta_model.pkl` | 569 B | ✅ **必交** — Stacking 融合模型（最终推荐） |
+| `scaler.pkl` | 4 KB | ✅ **必交** — 标准化器，预测时必需 |
+
+### 评估结果（`notebooks/`）
+
+| 文件 | 说明 |
+|------|------|
+| `05_final_report.ipynb` | ✅ **必交** — 最终实验报告（含模型对比、评估指标、可视化） |
+| `04_model_evaluation.ipynb` | ✅ 建议提交 — 超参调优与模型评估过程 |
+
+### 补充说明
+
+- 评估图表已内嵌在 Notebook 中，无需单独提交 `figures/` 目录下的图片
+- 预测时需同时加载 `scaler.pkl` 对输入做标准化，再传入模型预测
+
 ## 许可证
 
 仅供学习使用
